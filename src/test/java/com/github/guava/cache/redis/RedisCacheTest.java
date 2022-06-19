@@ -41,15 +41,7 @@ public class RedisCacheTest {
                 new JdkSerializer(),
                 new JdkSerializer(),
                 "test".getBytes(StandardCharsets.UTF_8),
-                100,
-                new CacheLoader<>() {
-                    @Override
-                    public String load(String key) throws Exception {
-                        try (Jedis jedis = jedisPool.getResource()) {
-                            return jedis.get(key);
-                        }
-                    }
-                }
+                666
         );
     }
 
