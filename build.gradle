@@ -1,22 +1,16 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "com.palantir.gradle.gitversion:gradle-git-version:0.15.0"
-    }
+plugins {
+    id 'maven-publish'
+    id "com.palantir.git-version" version "0.15.0"
 }
+
 
 repositories {
     mavenCentral()
 }
 
-apply plugin: "com.palantir.git-version"
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven-publish'
 
 version gitVersion()
 
