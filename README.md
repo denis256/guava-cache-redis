@@ -13,7 +13,7 @@ Usage in gradle:
     }
 
     dependencies {
-        implementation 'com.github.universal-development:guava-cache-redis:0.0.1'
+        implementation 'com.github.universal-development:guava-cache-redis:0.0.7'
     }
 ```
 
