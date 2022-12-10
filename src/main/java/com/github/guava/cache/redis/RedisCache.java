@@ -1,15 +1,5 @@
 package com.github.guava.cache.redis;
 
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Pipeline;
-
 import com.google.common.cache.AbstractLoadingCache;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -20,10 +10,18 @@ import com.google.common.collect.Sets;
 import com.google.common.primitives.Bytes;
 import com.google.common.util.concurrent.ExecutionError;
 import com.google.common.util.concurrent.UncheckedExecutionException;
-import redis.clients.jedis.Response;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Pipeline;
+
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * @author fanliwen
+ * Redis cache implementation
  */
 public class RedisCache<K, V> extends AbstractLoadingCache<K, V> implements LoadingCache<K, V> {
 
@@ -131,7 +129,7 @@ public class RedisCache<K, V> extends AbstractLoadingCache<K, V> implements Load
 
         try (Jedis jedis = jedisPool.getResource()) {
             if (expiration > 0) {
-                jedis.setex(keyBytes, (long)expiration, valueBytes);
+                jedis.setex(keyBytes, (long) expiration, valueBytes);
             } else {
                 jedis.set(keyBytes, valueBytes);
             }
@@ -154,7 +152,7 @@ public class RedisCache<K, V> extends AbstractLoadingCache<K, V> implements Load
                 Pipeline pipeline = jedis.pipelined();
                 jedis.mset(Iterables.toArray(keysvalues, byte[].class));
                 for (int i = 0; i < keysvalues.size(); i += 2) {
-                    pipeline.expire(keysvalues.get(i), (long)(expiration));
+                    pipeline.expire(keysvalues.get(i), (long) (expiration));
                 }
                 pipeline.sync();
             } else {

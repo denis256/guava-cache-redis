@@ -1,11 +1,11 @@
 package com.github.guava.cache.redis;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang3.SerializationUtils;
 
+import java.io.Serializable;
+
 /**
- * @author fanliwen
+ * Serialization implementation using Java serialization
  */
 public class JdkSerializer implements Serializer {
 

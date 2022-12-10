@@ -1,7 +1,7 @@
 package com.github.guava.cache.redis;
 
 /**
- * @author fanliwen
+ * Interface to serialize any object to byte array and deserialize it back
  */
 public interface Serializer {
 
