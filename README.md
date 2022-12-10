@@ -9,11 +9,13 @@ Usage in gradle:
 `build.gradle`
 ```
     repositories {
-        maven { url 'https://jitpack.io' }
+        maven {
+            url "https://mvn.universal-development.com/public" 
+        }
     }
 
     dependencies {
-        implementation 'com.github.universal-development:guava-cache-redis:0.0.7'
+        implementation 'com.unidev:guava-cache-redis:0.0.7'
     }
 ```
 
