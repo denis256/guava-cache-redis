@@ -15,7 +15,7 @@ Usage in gradle:
     }
 
     dependencies {
-        implementation 'com.unidev:guava-cache-redis:0.0.7'
+        implementation 'com.unidev.cache:guava-cache-redis:0.1.0'
     }
 ```
 
